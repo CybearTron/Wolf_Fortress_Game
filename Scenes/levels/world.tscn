@@ -1,18 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl0hbtq67m24"]
+[gd_scene load_steps=5 format=3 uid="uid://dl0hbtq67m24"]
 
+[ext_resource type="Script" path="res://Scripts/levels/world.gd" id="1_abmbv"]
 [ext_resource type="PackedScene" uid="uid://dv52ww3rm8pyr" path="res://Scenes/fortress/fortress.tscn" id="1_e5qe7"]
 [ext_resource type="PackedScene" uid="uid://cih1muq2xafeg" path="res://Scenes/wolves/wolf.tscn" id="2_75p36"]
 
+[sub_resource type="Curve2D" id="Curve2D_pjdh0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, -5, 0, 0, 0, 0, 1210, 8, 0, 0, 0, 0, 1206, 612, 0, 0, 0, 0, -6, 604, 0, 0, 0, 0, -2, -5)
+}
+point_count = 5
+
 [node name="world" type="Node2D"]
+script = ExtResource("1_abmbv")
+wolf_scene = ExtResource("2_75p36")
 
 [node name="fortress" parent="." instance=ExtResource("1_e5qe7")]
 position = Vector2(584, 328)
 
-[node name="wolf3" parent="." instance=ExtResource("2_75p36")]
-position = Vector2(216, 168)
+[node name="WolfPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_pjdh0")
 
-[node name="wolf2" parent="." instance=ExtResource("2_75p36")]
-position = Vector2(152, 664)
+[node name="WolfPathFollow" type="PathFollow2D" parent="WolfPath"]
+position = Vector2(-2, -5)
+rotation = 0.0107257
 
-[node name="wolf" parent="." instance=ExtResource("2_75p36")]
-position = Vector2(1040, 464)
+[node name="wolfTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="wolfTimer" to="." method="_on_wolf_timer_timeout"]

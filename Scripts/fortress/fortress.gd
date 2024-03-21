@@ -7,7 +7,7 @@ func _physics_process(delta):
 	healthBar.text = "Health: "+ str(health);
 	
 	if health<=0:
-		queue_free()
+		get_tree().reload_current_scene();
 
 
 
