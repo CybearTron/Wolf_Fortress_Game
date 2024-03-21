@@ -8,3 +8,10 @@ func _physics_process(delta):
 	
 	if health<=0:
 		queue_free()
+
+
+
+func _on_body_entered(body):
+	if body.is_in_group("wolf"):
+		health-=10;
+		body.queue_free();

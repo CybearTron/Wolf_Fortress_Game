@@ -5,8 +5,14 @@
 
 [node name="world" type="Node2D"]
 
-[node name="wolf" parent="." instance=ExtResource("2_75p36")]
-position = Vector2(200, 200)
-
 [node name="fortress" parent="." instance=ExtResource("1_e5qe7")]
 position = Vector2(584, 328)
+
+[node name="wolf3" parent="." instance=ExtResource("2_75p36")]
+position = Vector2(216, 168)
+
+[node name="wolf2" parent="." instance=ExtResource("2_75p36")]
+position = Vector2(152, 664)
+
+[node name="wolf" parent="." instance=ExtResource("2_75p36")]
+position = Vector2(1040, 464)
